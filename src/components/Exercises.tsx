@@ -1,6 +1,10 @@
 import React from 'react'
 
-type Props = {}
+type Props = {
+  setExercises: (value: string[])=> void;
+  exercises: string[],
+  setBodyPart: (value: string)=> void;
+}
 
 function Exercises({}: Props) {
   return (

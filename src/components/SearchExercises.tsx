@@ -3,9 +3,13 @@ import { useEffect, useState } from 'react';
 import ExerciseServices, { ExerciseOptions } from '../services/exerciseServices';
 import HorizontalScrollbar from './HorizontalScrollbar';
 
-type Props = {}
+type Props = {
+  setExercises: (value: string[])=> void;
+  bodyPart: string,
+  setBodyPart: (value: string)=> void;
+}
 
-function SearchExercises({}: Props) {
+function SearchExercises({setExercises,setBodyPart,bodyPart}: Props) {
 const [ search, updateSearch] = useState<string>('');
 const [bodyParts, setBodyParts] = useState<any[]>([]);
 
@@ -65,7 +69,7 @@ const  handleSearch = async () => {
         }} onClick={handleSearch}>Search</Button>
         </Box>
         <Box sx={{ position:'relative', width: '100%' , p: '20px'}}>
-          <HorizontalScrollbar data={bodyParts}></HorizontalScrollbar>
+          <HorizontalScrollbar data={bodyParts} setBodyPart={setBodyPart} bodyPart={bodyPart}></HorizontalScrollbar>
         </Box>
     </Stack>
   )
