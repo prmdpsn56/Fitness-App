@@ -15,8 +15,7 @@ const BodyPart = ({bodyPart,selectedBodyPart,selectBodyPart}: Props) => {
   }
   return (
     <Stack alignItems='center' justifyContent='center' className='bodyPart-card'>
-      <h1 style={{ color: bodyPart=== selectedBodyPart ? 'green' : ''}} onClick={updateSelectedBodyPart}>{bodyPart}</h1>
-        {/* <img src={Icon} alt={bodyPart} style={{width: '200px' ,height:'200px'}}/> */}
+      <img src={Icon} alt={bodyPart} style={{width: '200px' ,height:'200px'}} onClick={updateSelectedBodyPart}/>
     </Stack>
   )
 }
