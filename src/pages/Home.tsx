@@ -25,7 +25,7 @@ const Home = (props: Props) => {
     <Box>
         <HeroBanner></HeroBanner>
         <SearchExercises bodyPart={bodyPart} setExercises={updateExercises} setBodyPart={updateBodyPart}></SearchExercises>
-        <Exercises exercises={exercises} setExercises={updateExercises} setBodyPart={updateBodyPart}></Exercises>
+        <Exercises exercises={exercises} setExercises={updateExercises} bodyPart={bodyPart}></Exercises>
     </Box>
   )
 }

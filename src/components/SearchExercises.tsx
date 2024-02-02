@@ -34,6 +34,7 @@ const  handleSearch = async () => {
       exercise.bodyPart.includes(search) ||
       exercise.target.includes(search));
       console.log(filteredarray);
+      setExercises(filteredarray);
     })
   } else {
     console.log('Please enter a seach parameter')
