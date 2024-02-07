@@ -12,30 +12,38 @@ type Props = {
 function SearchExercises({setExercises,setBodyPart,bodyPart}: Props) {
 const [ search, updateSearch] = useState<string>('');
 const [bodyParts, setBodyParts] = useState<any[]>([]);
-
+let bodyPartList: any [] = [];
 
 useEffect(()=>{
+
   const fetchExercisesData = async () => {
-    const bodyPartList: any [] = await ExerciseServices(`https://exercisedb.p.rapidapi.com/exercises/bodyPartList`,ExerciseOptions);    
-    console.log(bodyPartList);
+    const result: string[]  = JSON.parse(localStorage.getItem('bodyParts') || '[]');
+    if(result.length === 0){
+    bodyPartList = await ExerciseServices(`https://exercisedb.p.rapidapi.com/exercises/bodyPartList`,ExerciseOptions);    
+    localStorage.setItem('bodyParts',JSON.stringify(bodyPartList));
     setBodyParts([...bodyPartList]);
+    }else{
+      setBodyParts([...result]);
+    }
   }
-
-
+    
   fetchExercisesData();
-},[])
+},[bodyPart]);
 
 const  handleSearch = async () => {
   if(search){
-    ExerciseServices(`https://exercisedb.p.rapidapi.com/exercises?limit=${ExerciseOptions.params.limit}`,ExerciseOptions).then((response:any[]) => {
-      let filteredarray = response.filter((exercise) =>
-      exercise.equipment.includes(search) || 
-      exercise.name.includes(search) || 
-      exercise.bodyPart.includes(search) ||
-      exercise.target.includes(search));
-      console.log(filteredarray);
-      setExercises(filteredarray);
-    })
+    setBodyPart(search);
+    // can remove the entire code cause we are setting the logic on boay part change.
+    // console.log(search);
+    // ExerciseServices(`https://exercisedb.p.rapidapi.com/exercises?limit=${ExerciseOptions.params.limit}`,ExerciseOptions).then((response:any[]) => {
+    //   let filteredarray = response.filter((exercise) =>
+    //   exercise.equipment.includes(search) || 
+    //   exercise.name.includes(search) || 
+    //   exercise.bodyPart.includes(search) ||
+    //   exercise.target.includes(search));
+    //   console.log(filteredarray);
+    //   setExercises(filteredarray);
+    // })
   } else {
     console.log('Please enter a seach parameter')
   }

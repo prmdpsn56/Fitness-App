@@ -1,5 +1,5 @@
 import { Box, Button } from '@mui/material';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HeroBanner from '../components/Herobanner';
 import SearchExercises from '../components/SearchExercises';
 import Exercises from '../components/Exercises';
