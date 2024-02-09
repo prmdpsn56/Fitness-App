@@ -78,7 +78,7 @@ const  handleSearch = async () => {
         }} onClick={handleSearch}>Search</Button>
         </Box>
         <Box sx={{ position:'relative', width: '100%' , p: '20px'}}>
-          <HorizontalScrollbar data={bodyParts} setBodyPart={setBodyPart} bodyPart={bodyPart}></HorizontalScrollbar>
+          <HorizontalScrollbar data={bodyParts} setBodyPart={setBodyPart} bodyPart={bodyPart} isBodyPart></HorizontalScrollbar>
         </Box>
     </Stack>
   )

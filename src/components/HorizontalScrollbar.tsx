@@ -4,11 +4,12 @@ import BodyPart from './BodyPart';
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import RightArrowIcon from '../assets/icons/right-arrow.png';
 import LeftArrowIcon from '../assets/icons/left-arrow.png';
+import ExerciseCard from './ExerciseCard';
 
 type Props = {
-  setBodyPart: (value: string)=> void;
-  bodyPart: string[],
-  data: string[],
+  setBodyPart?: (value: string)=> void;
+  bodyPart?: string[],
+  data?: string[],
 }
 
 const LeftArrow = () => {
@@ -32,13 +33,14 @@ const RightArrow = () => {
 };
 
 
-function HorizontalScrollbar({ data,bodyPart,setBodyPart }:any) {
+function HorizontalScrollbar({ data,bodyPart,setBodyPart, isBodyPart }:any) {
+  // console.log(data);
   return (
     <Box mt={4} sx={{position:'static'}}>
-     <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
+     <ScrollMenu>
     {data.map((item:any) => (
     <Box key={item} m="0 60px" >
-      <BodyPart bodyPart={item} selectedBodyPart={bodyPart} selectBodyPart={setBodyPart}/>
+      {isBodyPart ? <BodyPart bodyPart={item} selectedBodyPart={bodyPart} selectBodyPart={setBodyPart}/> : <ExerciseCard exercise={item}/>}
     </Box>
     ))}
     </ScrollMenu>
